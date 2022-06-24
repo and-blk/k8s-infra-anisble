@@ -1,0 +1,33 @@
+# This file is a template, and might need editing before it works on your project.
+# To contribute improvements to CI/CD templates, please follow the Development guide at:
+# https://docs.gitlab.com/ee/development/cicd/templates.html
+# This specific template is located at:
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Bash.gitlab-ci.yml
+
+# See https://docs.gitlab.com/ee/ci/yaml/index.html for all available options
+
+# you can delete this line if you're not using Docker
+variables:
+  IMAGE_NAME: "gitlab.local.com:5050/and/k8s-cluster/workbox"
+  IMAGE_VERSION: "latest"
+  
+image: "$IMAGE_NAME:$IMAGE_VERSION"
+stages:
+  - build_image
+  - build
+
+trigger_image_build: 
+  stage: build_image
+  trigger:
+    include: images/.gitlab-ci.yml
+  rules:
+    - changes:
+        - images/*
+
+build:
+  stage: build
+  script:
+    - BRANCH=$CI_COMMIT_REF_NAME make build
+  tags:
+    - controlplane
+
