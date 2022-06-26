@@ -1,0 +1,4 @@
+192.168.0.110 host_role=master
+192.168.0.111 host_role=worker
+192.168.0.112 host_role=worker
+192.168.0.113 host_role=worker
