@@ -35,6 +35,63 @@
 - name: Disable swap
   command: swapoff -a
   when: ansible_swaptotal_mb > 0
+  
+- name: containerd modules conf
+  blockinfile:
+    create: yes
+    path: /etc/modules-load.d/containerd.conf
+    block: |
+      overlay
+      br_netfilter
+- name: load overlay module
+  modprobe:
+    name: overlay
+    state: present
+
+- name: load netfilter module
+  modprobe:
+    name: br_netfilter
+    state: present
+
+- name: set ip forward sysctl
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    sysctl_set: yes
+    state: present
+    reload: yes
+
+- name: set bridge sysctl
+  sysctl:
+    name: net.bridge.bridge-nf-call-iptables
+    value: '1'
+    sysctl_set: yes
+    state: present
+    reload: yes
+
+- name: set bridge6 sysctl
+  sysctl:
+    name: net.bridge.bridge-nf-call-ip6tables
+    value: '1'
+    sysctl_set: yes
+    state: present
+    reload: yes
+
+- name: set maxvmcount sysctl
+  sysctl:
+    name: vm.max_map_count
+    value: 262144
+    sysctl_set: yes
+    state: present
+    reload: yes
+
+- name: containerd directory
+  file:
+    path: /etc/containerd
+    state: directory
+
+- name: containerd config file
+  command: "touch /etc/containerd/config.toml; containerd config default | tee /etc/containerd/config.toml"
 
 - name: Add an apt signing key for Kubernetes
   apt_key:
