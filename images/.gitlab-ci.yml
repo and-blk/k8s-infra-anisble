@@ -25,10 +25,9 @@ build:
     - >
       docker build 
       -t "$IMAGE_HASH" 
-      -t "$IMAGE_LATEST" 
-      --build-arg PACKAGES="${PACKAGES}" . 
+      -t "$IMAGE_LATEST" .
     - docker push "$IMAGE" --all-tags
   tags:
     - main
-    
+
 
