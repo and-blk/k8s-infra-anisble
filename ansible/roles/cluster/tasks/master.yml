@@ -8,9 +8,14 @@
     - cp -i /etc/kubernetes/admin.conf /home/automation/.kube/config
     - chown automation:automation /home/automation/.kube/config
 
+- name: download calico pod network
+  get_url:
+    url: https://docs.projectcalico.org/manifests/calico.yaml
+    dest: /root/calico.yaml
+  
 - name: Install calico pod network
-  become: false
-  command: kubectl create -f https://docs.projectcalico.org/v3.4/getting-started/kubernetes/installation/hosted/calico.yaml
+  become: true
+  command: "kubectl apply -f /root/calico.yaml"
 
 - name: Generate join command
   command: kubeadm token create --print-join-command
