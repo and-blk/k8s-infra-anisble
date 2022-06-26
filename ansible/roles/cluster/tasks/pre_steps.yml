@@ -91,7 +91,14 @@
     state: directory
 
 - name: containerd config file
-  command: "touch /etc/containerd/config.toml; containerd config default | tee /etc/containerd/config.toml"
+  command: "rm -f /etc/containerd/config.toml"
+
+- name: Restart containerd
+  service:
+    name: containerd
+    daemon_reload: yes
+    state: restarted
+
 
 - name: Add an apt signing key for Kubernetes
   apt_key:
