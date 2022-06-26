@@ -29,5 +29,5 @@ build:
   script:
     - BRANCH=$CI_COMMIT_REF_NAME make build
   tags:
-    - controlplane
+    - main
 

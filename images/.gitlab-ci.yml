@@ -30,5 +30,5 @@ build:
       --build-arg PACKAGES="${PACKAGES}" . 
     - docker push "$IMAGE" --all-tags
   tags:
-    - controlplane
+    - main
 
