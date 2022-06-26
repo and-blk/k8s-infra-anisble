@@ -16,7 +16,7 @@ variables:
 image: "docker:20"
 stages:
   - build
-  
+
 build:
   stage: build
   script:
@@ -30,4 +30,5 @@ build:
     - docker push "$IMAGE" --all-tags
   tags:
     - main
+    
 
