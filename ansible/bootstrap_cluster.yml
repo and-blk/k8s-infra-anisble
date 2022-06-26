@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  remote_user: user
+  remote_user: automation
   become: true
   become_method: sudo
   become_user: root
