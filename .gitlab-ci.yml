@@ -8,7 +8,7 @@
 
 # you can delete this line if you're not using Docker
 variables:
-  IMAGE_NAME: "gitlab.local.com:5050/and/k8s-cluster/workbox"
+  IMAGE_NAME: "gitlab.local.com:5050/and/k8s-infra/workbox"
   IMAGE_VERSION: "latest"
   
 image: "$IMAGE_NAME:$IMAGE_VERSION"
