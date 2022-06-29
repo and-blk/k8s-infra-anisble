@@ -2,3 +2,5 @@
 - include_tasks: pre_steps.yml
 - include_tasks: master.yml
   when: host_role == "master"
+- include_tasks: worker.yml
+  when: host_role == "worker"
