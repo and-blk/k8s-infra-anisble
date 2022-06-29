@@ -9,13 +9,14 @@
     - chown automation:automation /home/automation/.kube/config
 
 - name: download calico pod network
+  become: false
   get_url:
     url: https://docs.projectcalico.org/manifests/calico.yaml
-    dest: /root/calico.yaml
+    dest: ~/calico.yaml
   
 - name: Install calico pod network
   become: false
-  command: "kubectl apply -f /root/calico.yaml"
+  command: "kubectl apply -f ~/calico.yaml"
 
 - name: Generate join command
   become: false
