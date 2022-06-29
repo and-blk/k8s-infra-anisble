@@ -26,3 +26,10 @@
 - name: Copy join command to local file
   become: false
   local_action: copy content="{{ join_command.stdout_lines[0] }}" dest="./.temp-join-command"
+
+- name: ls -l
+  command: "ls -la ./"
+  register: ls_res
+
+- debug:
+    msg: "{{ ls_res }}"
