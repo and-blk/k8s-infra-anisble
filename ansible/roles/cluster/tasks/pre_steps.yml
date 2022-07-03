@@ -22,6 +22,11 @@
     - gnupg-agent
     - software-properties-common
     - containerd.io
+    - python3-pip
+
+- name: pip3 kubernetes library
+  ansible.builtin.pip:
+    name: kubernetes
 
 - name: Remove swapfile from /etc/fstab
   mount:
