@@ -9,7 +9,7 @@
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
     state: present
 
-- name: Install packages that allow apt to be used over HTTPS
+- name: Install required packages
   apt:
     name: "{{ packages }}"
     state: present
@@ -23,6 +23,7 @@
     - software-properties-common
     - containerd.io
     - python3-pip
+    - docker-ce
 
 - name: pip3 kubernetes library
   ansible.builtin.pip:
