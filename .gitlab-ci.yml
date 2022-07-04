@@ -13,17 +13,7 @@ variables:
   
 image: "$IMAGE_NAME:$IMAGE_VERSION"
 stages:
-  - build_workbox
   - build
-
-workbox_build: 
-  stage: build_workbox
-  trigger:
-    include: images/.gitlab-ci.yml
-    strategy: depend
-  rules:
-    - changes:
-        - images/*
 
 build:
   stage: build
