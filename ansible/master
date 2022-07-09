@@ -1,4 +1,5 @@
-192.168.0.110 host_role=master
-192.168.0.111 host_role=worker
-192.168.0.112 host_role=worker
-192.168.0.113 host_role=worker
+temp-controleplain1 host_role=master
+temp-controleplain2 host_role=master
+temp-node-1 host_role=worker
+temp-node-2 host_role=worker
+temp-node-3 host_role=worker
